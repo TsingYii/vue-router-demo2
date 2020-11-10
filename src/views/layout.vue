@@ -26,18 +26,17 @@
         </el-menu>
       </el-aside>
       <el-main>
-        <appmain />
+        <router-view />
       </el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
-import appmain from '@/views/appmain'
 export default {
   name: 'Layout',
   components: {
-    appmain
+
   },
   watch: {
     $route () {

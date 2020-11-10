@@ -6,20 +6,13 @@
 
 <script>
 export default {
-  name: 'App',
-  methods: {
-    btnClick () {
-      console.log('btnClick')
-      this.$router.push('/user/23')
-    }
-  }
+  name: 'App'
 }
 </script>
 
 <style>
 html,body,#app{
   height: 100%;
-  background: pink;
 }
 *{
   padding: 0;

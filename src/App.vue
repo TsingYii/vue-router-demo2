@@ -17,5 +17,12 @@ export default {
 </script>
 
 <style>
-
+html,body,#app{
+  height: 100%;
+  background: pink;
+}
+*{
+  padding: 0;
+  margin: 0;
+}
 </style>

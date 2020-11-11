@@ -14,7 +14,7 @@ export default {
   name: 'Orderlist',
   methods: {
     btnClick () {
-      this.$router.push('Orderdetail')
+      this.$router.push('/orderdetail')
     }
   }
 }

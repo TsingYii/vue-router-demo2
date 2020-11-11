@@ -12,7 +12,7 @@ export default {
   name: 'Refundlist',
   methods: {
     btnClick () {
-      this.$router.push('Refunddetail')
+      this.$router.push('/refunddetail')
     }
   }
 }

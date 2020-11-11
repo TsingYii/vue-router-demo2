@@ -45,38 +45,35 @@ router.beforeEach((to, from, next) => {
 })
 
 export function addDynamicRoute (result) {
-  const tmp = {
-    path: '/layout',
-    component: layout,
-    children: [
-
-    ]
-  }
   // 根据获取的路由重新配置路由
+  const res = []
   result.forEach(item => {
-    const subtmp = {
+    const tmp = {
       path: item.url,
-      component: asyncRouters[item.url],
-      name: asyncRouters[item.url].name,
+      component: layout,
       children: [
-
+        {
+          path: item.url,
+          component: asyncRouters[item.url],
+          name: asyncRouters[item.url].name
+        }
       ]
     }
+
     if (item.childMenus && item.childMenus.length) {
       item.childMenus.forEach(cItem => {
-        const ssubtmp = {
+        const subtmp = {
           path: cItem.url,
           component: asyncRouters[cItem.url],
           name: asyncRouters[cItem.url].name
         }
-        console.log(asyncRouters[cItem.url].name)
-        subtmp.children.push(ssubtmp)
+        tmp.children.push(subtmp)
       })
     }
-    tmp.children.push(subtmp)
+    res.push(tmp)
   })
   // 添加路由
-  router.addRoutes([tmp])
+  router.addRoutes(res)
 }
 
 export default router

@@ -12,7 +12,7 @@ export default {
   name: 'Billlist',
   methods: {
     btnClick () {
-      this.$router.push('Billdetail')
+      this.$router.push('/billdetail')
     }
   }
 }

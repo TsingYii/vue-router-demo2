@@ -12,7 +12,7 @@ export default {
   name: 'Invoicelist',
   methods: {
     btnClick () {
-      this.$router.push('Invoicedetail')
+      this.$router.push('/invoicedetail')
     }
   }
 }

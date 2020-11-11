@@ -21,6 +21,11 @@
         </el-menu>
       </el-aside>
       <el-main>
+        <el-breadcrumb separator="/">
+          <el-breadcrumb-item :to="{ path: '/' }">
+            首页
+          </el-breadcrumb-item>
+        </el-breadcrumb>
         <router-view />
       </el-main>
     </el-container>
@@ -37,7 +42,12 @@ export default {
   },
   computed: mapState([
     'menulist'
-  ])
+  ]),
+  watch: {
+    $route () {
+      console.log(this.$route.matched)
+    }
+  }
 }
 </script>
 

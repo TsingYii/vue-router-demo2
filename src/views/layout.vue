@@ -1,6 +1,8 @@
 <template>
   <el-container>
-    <el-header>Header</el-header>
+    <el-header>
+      <myheader />
+    </el-header>
     <el-container>
       <el-aside width="200px">
         <el-menu
@@ -33,10 +35,11 @@
 </template>
 
 <script>
+import myheader from '@/views/myheader'
 export default {
   name: 'Layout',
   components: {
-
+    myheader
   },
   watch: {
     $route () {

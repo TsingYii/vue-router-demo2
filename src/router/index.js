@@ -11,19 +11,15 @@ import billdetail from '@/views/billdetail'
 import invoicelist from '@/views/invoicelist'
 import invoicedetail from '@/views/invoicedetail'
 import layout from '@/views/layout'
+import { isAuthenticated } from '@/components/permission'
 Vue.use(VueRouter)
-
-function isAuthenticated () {
-  // 获取本地存储的token
-  return false
-}
 
 const constRoutes = [
   { path: '/', redirect: '/home' },
-  { path: '/login', component: login }
+  { path: '/login', component: login, name: login.name }
 ]
 
-const asycnRouters = [
+export const asyncRouters = [
   { path: '/home', component: home },
   { path: '/orderlist', component: orderlist },
   { path: '/orderdetail', component: orderdetail },
@@ -43,16 +39,17 @@ const tmp = {
   ]
 }
 
-asycnRouters.forEach(route => {
+asyncRouters.forEach(route => {
   const subtmp = {
     path: route.path,
-    component: route.component
+    component: route.component,
+    name: route.component.name
   }
   tmp.children.push(subtmp)
 })
 
 const routes = constRoutes.concat(tmp)
-
+console.log(routes)
 const router = new VueRouter({
   mode: 'history',
   routes

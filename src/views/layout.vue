@@ -10,21 +10,14 @@
           class="el-menu-vertical-demo"
           background-color="#D3DCE6"
           text-color="black"
-          active-text-color="#ffd04b"
+          active-text-color="#409EFF"
           :router="true"
         >
-          <el-menu-item index="orderlist">
-            订单管理
-          </el-menu-item>
-          <el-menu-item index="refundlist">
-            退货单管理
-          </el-menu-item>
-          <el-menu-item index="billlist">
-            账单管理
-          </el-menu-item>
-          <el-menu-item index="invoicelist">
-            发票管理
-          </el-menu-item>
+          <template v-for="route in menulist">
+            <el-menu-item :key="route.url" :index="route.url">
+              {{ route.menuName }}
+            </el-menu-item>
+          </template>
         </el-menu>
       </el-aside>
       <el-main>
@@ -36,16 +29,15 @@
 
 <script>
 import myheader from '@/views/myheader'
+import { mapState } from 'vuex'
 export default {
   name: 'Layout',
   components: {
     myheader
   },
-  watch: {
-    $route () {
-      console.log('=========', this.$route.path)
-    }
-  }
+  computed: mapState([
+    'menulist'
+  ])
 }
 </script>
 

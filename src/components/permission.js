@@ -13,6 +13,6 @@ export function removeToken () {
 }
 
 export function isAuthenticated () {
-  return this.getToken()
+  return getToken()
 }
 

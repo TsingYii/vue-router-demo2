@@ -34,15 +34,17 @@
 
 <script>
 import myheader from '@/views/myheader'
-import { mapState } from 'vuex'
+
 export default {
   name: 'Layout',
   components: {
     myheader
   },
-  computed: mapState([
-    'menulist'
-  ]),
+  computed: {
+    menulist () {
+      return this.$store.state.userInfo.menulist
+    }
+  },
   watch: {
     $route () {
       console.log(this.$route.matched)

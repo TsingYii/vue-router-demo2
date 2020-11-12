@@ -8,7 +8,7 @@ import store from '@/store/index'
 Vue.use(VueRouter)
 
 const constRoutes = [
-  { path: '/', redirect: '/home' },
+  { path: '/', redirect: '/login' },
   { path: '/login', component: login, name: login.name },
   { path: '/layout', component: layout,
     children: [
@@ -37,7 +37,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (!isAuthenticated() && to.path !== '/login') {
     next({ name: 'Login' })
-  } else if (store.state.menulist.length === 0) {
+  } else if (store.state.userInfo && store.state.userInfo.menulist && store.state.userInfo.menulist.length === 0) {
     store.dispatch('getMenulist')
     console.log(store.state)
   }
@@ -73,6 +73,7 @@ export function addDynamicRoute (result) {
     res.push(tmp)
   })
   // 添加路由
+  console.log(res)
   router.addRoutes(res)
 }
 

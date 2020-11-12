@@ -1,10 +1,16 @@
 <template>
   <div>
     <el-row :gutter="10">
-      <el-col :span="22">
+      <el-col :span="20">
         <div class="wel">
-          欢迎来到德莱联盟！
+          {{ name+'  欢迎您！' }}
         </div>
+      </el-col>
+      <el-col :span="2" :v-if="url">
+        <el-image
+          style="width: 60px; height: 60px"
+          :src="url"
+        />
       </el-col>
       <el-col :span="2">
         <el-button v-loading.fullscreen.lock="fullscreenLoading" type="text" class="logout" @click="logout">
@@ -22,6 +28,14 @@ export default {
   data () {
     return {
       fullscreenLoading: false
+    }
+  },
+  computed: {
+    name () {
+      return this.$store.state.userInfo.phone
+    },
+    url () {
+      return this.$store.state.userInfo.avatarUrl
     }
   },
   methods: {
@@ -43,5 +57,10 @@ export default {
   text-align: left;
   font-size: 40px;
   font-style: bold;
+}
+.el-image{
+  border-radius: 50%;
+  background-color: #B3C0D1;
+  border: 1px solid #d5d5d5;
 }
 </style>

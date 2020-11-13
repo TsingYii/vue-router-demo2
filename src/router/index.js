@@ -18,14 +18,8 @@ const constRoutes = [
 ]
 
 export const asyncRouters = {
-  '/orderlist': () => import('@/views/orderlist'),
-  '/orderdetail': () => import('@/views/orderdetail'),
-  '/refundlist': () => import('@/views/refundlist'),
-  '/refunddetail': () => import('@/views/refunddetail'),
-  '/billlist': () => import('@/views/billlist'),
-  '/billdetail': () => import('@/views/billdetail'),
-  '/invoicelist': () => import('@/views/invoicelist'),
-  '/invoicedetail': () => import('@/views/invoicedetail')
+  "/todolist": () => import("@/views/todolist.vue"),
+  "/tododetail": () => import("@/views/tododetail.vue")
 }
 
 const routes = constRoutes
@@ -34,11 +28,13 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   if (!isAuthenticated() && to.path !== '/login') {
     next({ name: 'Login' })
-  } else if (store.state.userInfo && store.state.userInfo.menulist && store.state.userInfo.menulist.length === 0) {
-    store.dispatch('getMenulist')
+    return
+  }
+  if (isAuthenticated() && store.state.menulist && store.state.menulist.length === 0) {
+    await store.dispatch('getMenulist')
     console.log(store.state)
   }
   next()
@@ -73,7 +69,6 @@ export function addDynamicRoute (result) {
     res.push(tmp)
   })
   // 添加路由
-  console.log(res)
   router.addRoutes(res)
 }
 

@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     menulist () {
-      return this.$store.state.userInfo.menulist
+      return this.$store.state.menulist
     }
   },
   watch: {

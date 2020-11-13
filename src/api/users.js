@@ -10,9 +10,16 @@ const users = {
   login (params) {
     return axios.post(`${base.bd}/users/login`, params)
   },
+  getuserinfo (params) {
+    return axios.post(`${base.bd}/users/getuserinfo`, params)
+  },
   // 注册
   regist (params) {
     return axios.post(`${base.bd}/users/regist`, params)
+  },
+  // 退出登录
+  logout (params) {
+    return axios.post(`${base.bd}/users/logout`, params)
   },
   // 菜单
   menu (params) {

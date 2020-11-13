@@ -2,10 +2,13 @@ import axios from 'axios'
 import store from '@/store/index'
 import router from '@/router/index'
 
+// axios.defaults.withCredentials = true
+
 const instance = axios.create({
   timeout: 60000,
   headers: {
-    'Content-Type': "application/json;charset=utf-8"
+    'Content-Type': "application/json;charset=utf-8",
+    'X-Requested-With': 'XMLHttpRequest'
   }
 })
 
@@ -19,8 +22,10 @@ instance.interceptors.request.use(
     // 但是即使token存在，也有可能token是过期的，所以在每次的请求头中携带token
     // 后台根据携带的token判断用户的登录情况，并返回给我们对应的状态码
     // 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作。
-    const token = store.state.token
-    token && (config.headers.Authorization = token)
+    if (store.state.userInfo && store.state.userInfo.token) {
+      const token = store.state.userInfo.token
+      token && (config.headers.Authorization = token)
+    }
     return config
   },
   error => Promise.error(error))
@@ -77,7 +82,7 @@ instance.interceptors.response.use(
       const code = data["code"]
       const msg = data['msg']
       const result = data['result']
-      code === 0 ? Promise.resolve(result) : Promise.reject(msg)
+      return code === 0 ? Promise.resolve(result) : Promise.reject(msg)
     } else {
       Promise.reject(res)
     }

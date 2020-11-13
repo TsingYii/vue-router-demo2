@@ -26,7 +26,6 @@
 
 <script>
 import { setToken } from '@/components/permission.js'
-import { addDynamicRoute } from '@/router/index.js'
 export default {
   name: 'Login',
   data () {
@@ -81,7 +80,6 @@ export default {
               console.log(response)
               that.loading = false
               that.$store.commit('setUserInfo', response)
-              await that.$store.dispatch('getMenulist', that.formdata)
               that.$message.success('登录成功')
               setToken(response['token'])
               that.$router.push('/home')
@@ -89,6 +87,7 @@ export default {
             .catch(function (error) {
               that.loading = false
               console.log(error)
+              that.$message.error(error)
             })
         } else {
           this.$message.error('账号或密码错误')

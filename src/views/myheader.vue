@@ -41,6 +41,11 @@ export default {
   methods: {
     logout () {
       this.fullscreenLoading = true
+      this.$api.users.logout().then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
       setTimeout(() => {
         this.fullscreenLoading = false
         this.$message.success('退出成功')

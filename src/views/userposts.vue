@@ -1,7 +1,6 @@
 <template>
-  <div>
-    用户文章{{ $route.query }}
-    <div>params参数 {{ $route.params }}</div>
+  <div class="appContainer">
+    用户文章{{ $route.params }}
   </div>
 </template>
 
@@ -11,6 +10,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.appContainer{
+  height: 200px;
+  background-color: orange;
+}
 </style>

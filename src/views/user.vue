@@ -1,6 +1,6 @@
 <template>
-  <div>
-    用户主页{{ $route.params.id }}
+  <div class="appContainer">
+    用户主页{{ id }}
     <el-button type="primary" @click="go2setting">
       用户设置
     </el-button>
@@ -16,7 +16,6 @@
     <el-button type="primary" @click="gofu1">
       gofu1
     </el-button>
-
     <router-view />
   </div>
 </template>
@@ -24,6 +23,12 @@
 <script>
 export default {
   name: 'User',
+  props: {
+    id: {
+      type: String,
+      default: () => ''
+    }
+  },
   methods: {
     go2setting () {
       this.$router.push({ name: 'profile', params: { userid: '12' }})
@@ -44,6 +49,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.appContainer{
+  height: 100%;
+  background-color: green;
+}
 </style>

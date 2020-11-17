@@ -1,5 +1,7 @@
 <template>
-  <div>用户信息 {{ $route.params }}</div>
+  <div class="appContainer">
+    用户信息 {{ $route.params }}
+  </div>
 </template>
 
 <script>
@@ -8,6 +10,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.appContainer{
+  height: 200px;
+  background-color: pink;
+}
 </style>
